@@ -1,0 +1,116 @@
+﻿using Raylib_cs;
+using System;
+
+namespace lAmBerJamBer
+{ 
+    class Lambo
+    {
+        static void Main(string[] args)
+        {
+            Raylib.InitWindow(1920, 1100, "Ryan's Car Game (c# Ver)");
+            Raylib.SetTargetFPS(240);
+            Texture2D roadtexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\Road.png");
+            Texture2D treetexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\tree.png");
+            Texture2D lambotexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\Lamborghini.png");
+
+            Color skyblue = new Color(224, 247, 250, 255);
+            Color textblack = new Color(0, 0, 0, 255);
+
+            int player_width = 324;
+            int player_height = 180;
+            int player_x = 800;
+            int player_y = 800;
+            int player_speed = 70;
+
+            int enemy_width = 350;
+            int enemy_height = 350;
+            int enemy_speed = 10;
+            int enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
+            int enemy_y = -enemy_height;
+
+            int score = 0;
+            bool Game_over = false;
+
+            while (!Raylib.WindowShouldClose())
+            {
+                Raylib.BeginDrawing();
+                Raylib.ClearBackground(skyblue);
+
+                if (!Game_over)
+                {
+                    if (Raylib.IsKeyPressed(KeyboardKey.Up) || Raylib.IsKeyPressed(KeyboardKey.W))
+                    {
+                        if (player_y > 0)
+                        {
+                            player_y -= player_speed;
+                        }
+                    }
+                    if (Raylib.IsKeyPressed(KeyboardKey.Left) || Raylib.IsKeyPressed(KeyboardKey.A))
+                    {
+                        if (player_x > 0)
+                        {
+                            player_x -= player_speed;
+                        }
+                    }
+                    if (Raylib.IsKeyPressed(KeyboardKey.Down) || Raylib.IsKeyPressed(KeyboardKey.S))
+                    {
+                        if (player_y < 1200 - player_height)
+                        {
+                            player_y += player_speed;
+                        }
+                    }
+                    if (Raylib.IsKeyPressed(KeyboardKey.Right) || Raylib.IsKeyPressed(KeyboardKey.D))
+                    {
+                        if (player_x < 1920 - player_height)
+                        {
+                            player_x += player_speed;
+                        }
+                    }
+
+                }
+                if (!Game_over)
+                {
+                    enemy_y += enemy_speed;
+                    if (enemy_y > 1200)
+                    {
+                        enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
+                        enemy_y = -enemy_height;
+                        score += 1;
+                    }
+                    int position_x = player_x + (player_width / 2);
+                    int position_y = player_y + player_height;
+                    if (position_x < enemy_x + enemy_width && position_x + enemy_width > enemy_x && position_y < enemy_y + enemy_height && position_y + enemy_height > enemy_y)
+                    {
+                        Game_over = true;
+                    }
+                }
+                Raylib.DrawTexture(treetexture,enemy_x,enemy_y,Color.White);
+                Raylib.DrawTexture(lambotexture, player_x, player_y, Color.White);
+
+                if (!Game_over)
+                {
+                    Raylib.DrawText($"Score:{score}",50,35,30, textblack);
+                }
+                else
+                {
+                    Raylib.DrawText($"Final Score:{score}",50,35,30,textblack);
+                    Raylib.DrawText($"Press 'R' to Restart again.",860,650,30,textblack);
+                    Raylib.DrawText($"OR", 950, 695, 30, textblack);
+                    Raylib.DrawText($"Press Alt + F4 to Quit the Game.", 840, 750, 30, textblack);
+
+                    if (Raylib.IsKeyDown(KeyboardKey.R))
+                    {
+                        enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
+                        enemy_y = -enemy_height;
+                        player_x = 800;
+                        player_y = 800;
+                        score = 0;
+                        Game_over = false;
+                    }
+                }
+                Raylib.EndDrawing();
+            }
+
+        }
+    }
+}
