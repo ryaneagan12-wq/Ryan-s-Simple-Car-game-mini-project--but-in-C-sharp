@@ -9,7 +9,6 @@ namespace lAmBerJamBer
         {
             Raylib.InitWindow(1920, 1100, "Ryan's Car Game (c# Ver)");
             Raylib.SetTargetFPS(240);
-            Texture2D roadtexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\Road.png");
             Texture2D treetexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\tree.png");
             Texture2D lambotexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\lAmBerJamBer\\lAmBerJamBer\\Lamborghini.png");
 
