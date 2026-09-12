@@ -7,7 +7,7 @@
         {
             static void Main(string[] args)
             {
-                Raylib.InitWindow(1920,1100,"Speedy Mclaren");
+                Raylib.InitWindow(1920,1100,"Ryan's Car Game (c# Ver)");
                 Raylib.SetTargetFPS(240);
                 Texture2D roadtexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\TestTest\\TestTest\\Road.png");
                 Texture2D buggatitexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\TestTest\\TestTest\\Buggati.png");
