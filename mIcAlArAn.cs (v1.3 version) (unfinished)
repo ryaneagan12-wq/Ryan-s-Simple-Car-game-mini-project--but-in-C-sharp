@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Raylib_cs;
 
 namespace mIcAlArAn
@@ -9,8 +9,8 @@ namespace mIcAlArAn
         {
             Raylib.InitWindow(1920, 1100,"Ryan's Car Game (C# Ver)");
             Raylib.SetTargetFPS(60);
-            Texture2D treetexture = Raylib.LoadTexture("");
-            Texture2D mclarentexture = Raylib.LoadTexture("");
+            Texture2D treetexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\mIcAlArAn\\mIcAlArAn\\mclaren.png");
+            Texture2D mclarentexture = Raylib.LoadTexture("C:\\Users\\ryan\\OneDrive\\Documents\\C#\\mIcAlArAn\\mIcAlArAn\\tree.png");
 
             Color Teal = new Color(0, 128, 128, 255);
             Color textblack = new Color(0, 0, 0, 255);
@@ -22,10 +22,10 @@ namespace mIcAlArAn
             decimal player_speed = 70.0m;
 
 
-            decimal enemy_width = 350.0m;
+            int enemy_width = 350;
             decimal enemy_height = 350.0m;
             decimal enemy_speed = 10.0m;
-            decimal enemy_x = Raylib.GetRandomValue(0.0m, 1920.0m - enemy_width);
+            int enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
             decimal enemy_y = -enemy_height;
 
             int score = 0;
@@ -35,6 +35,7 @@ namespace mIcAlArAn
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
+                Raylib.ClearBackground(Teal);
 
                 if (!game_over)
                 {
@@ -73,7 +74,7 @@ namespace mIcAlArAn
 
                     if (enemy_y > 1200.0m)
                     {
-                        enemy_x = Raylib.GetRandomValue(0.0m, 1920.0m - enemy_width);
+                        enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
                         enemy_y = -enemy_height;
                         score += 1;
                     }
@@ -107,7 +108,7 @@ namespace mIcAlArAn
 
                     if (Raylib.IsKeyDown(KeyboardKey.R))
                     {
-                        enemy_x = Raylib.GetRandomValue(0.0m, 1920.0m - enemy_width);
+                        enemy_x = Raylib.GetRandomValue(0, 1920 - enemy_width);
                         enemy_y = -enemy_height;
                         player_x = 800.0m;
                         player_y = 800.0m;
